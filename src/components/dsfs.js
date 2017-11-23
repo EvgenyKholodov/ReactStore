@@ -65,39 +65,60 @@ class Goods extends Component {
     let {typeIndex} = this.props;
     var data = this.props.goods;
     let newsTemplate;
-    console.log(typeIndex);
-    let Method = 0;
-    switch (typeIndex) {
-      case '1':
-        Method = MaxPriceSort;
+    if (typeIndex === '1') {
+      newsTemplate = data.sort(MaxPriceSort).map((item, index) => {
 
-        break;
+        return (
+          <div key={index}>
+            <CurrentItem data={item} onClick={this.selectItem}/>
+          </div>
+        );
+      })
 
-      case '2':
-        Method = MinPriceSort;
-        break;
-      case '3':
-        Method = AlphaSort;
-        break;
-
-      case '4':
-        Method = RatingSort;
-        break;
-
-      default:
-        console.log('case deafault')
-        break;
     }
+    else if (typeIndex === '2') {
 
+      newsTemplate = data.sort(MinPriceSort).map((item, index) => {
+        return (
+          <div key={index}>
+            <CurrentItem data={item} onClick={this.selectItem}/>
+          </div>
+        );
+      })
+    }
+    else if (typeIndex === '3') {
 
-    newsTemplate = data.sort(Method).map((item, index) => {
+      newsTemplate = data.sort(AlphaSort).map((item, index) => {
+        return (
+          <div key={index}>
+            <CurrentItem data={item} onClick={this.selectItem}/>
+          </div>
+        );
+      })
+    }
+    else if (typeIndex === '4') {
 
-      return (
-        <div key={index}>
-          <CurrentItem data={item} onClick={this.selectItem}/>
-        </div>
-      )
-    })
+      newsTemplate = data.sort(RatingSort).map((item, index) => {
+        return (
+          <div key={index}>
+            <CurrentItem data={item} onClick={this.selectItem}/>
+          </div>
+        );
+      })
+    }
+    else {
+
+      newsTemplate = data.map((item, index) => {
+
+        return (
+          <div key={index}>
+            <CurrentItem data={item} onClick={this.selectItem}/>
+          </div>
+        );
+      })
+
+    }
+    ;
     return (
       <div className="ReadyItem">
         {newsTemplate}
@@ -105,7 +126,7 @@ class Goods extends Component {
           isOpen={isActive}
           contentLabel="Modal">
           <div>
-            <CurrentItem data={currentItem} onClick={this.toggle}/>
+            <CurrentItem data={currentItem} />
             <button onClick={this.toggle}>close</button>
           </div>
         </Modal>
@@ -117,3 +138,4 @@ class Goods extends Component {
 
 
 export default Goods;
+

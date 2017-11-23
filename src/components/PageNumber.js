@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class PageNumber extends Component {
 
-    render() {
-        return (
-            <div>
-                <p>PageNumber</p>
-            </div>
+  render() {
+    return (
+      <div>
+        <p>PageNumber</p>
+      </div>
 
-        )
+    )
 
 
-    }
+  }
 }
 
 
